@@ -8,11 +8,18 @@
 #print name
 import re
 import PyPDF2
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 newfile = open('hello.txt','w')
-file=open('sample.pdf','rb')
+file=open('sample1.pdf','rb')
 pdfreader=PyPDF2.PdfFileReader(file)
 print(pdfreader.getNumPages())
-pageobj=pdfreader.getPage(10)
+p = pdfreader.getNumPages()
+pageobj=pdfreader.getPage(p-1)
+input = 'random.pdf'
+output = 'hello.txt'
+#os.system(("ps2ascii %s %s") %( input , output))
 newfile.write(pageobj.extractText())
 file.close()
 newfile.close()
@@ -43,3 +50,5 @@ print o[1]
 #s = ''.join(x for x in k if x.isdigit())
 #print int(s)
 myfile.close()
+
+
